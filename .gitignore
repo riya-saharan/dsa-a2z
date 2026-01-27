@@ -1,0 +1,7 @@
+# Ignore compiled executables
+*.exe
+
+# Optional (recommended)
+*.o
+*.out
+*.obj
