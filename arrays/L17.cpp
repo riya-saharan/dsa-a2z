@@ -238,3 +238,19 @@ vector<int> getSecondOrderElements(int n, vector<int> a)
     // return result;
     //  this whole code - create an empty vector, insert first element, insert second element, and return it.
 }
+
+// checking if the array is sorted and in non decending order
+int isSorted(int n, vector<int> a)
+{
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] >= a[i - 1])
+        {
+        }
+        else
+        {
+            return false;
+        }
+    }
+    return true;
+}
