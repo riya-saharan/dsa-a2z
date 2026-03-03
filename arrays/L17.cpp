@@ -114,3 +114,127 @@ int largestElement(vector<int> &arr, int n)
     return largest;
 }
 // tc = o(N)
+
+// find second largest element
+// brute force solution
+#include <iostream>
+using namespace std;
+int main()
+{
+    int arr[] = {1, 2, 4, 7, 7, 5};
+    int n = 6;
+
+    int largest = arr[0];
+    int secondLargest = -1;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > largest)
+        {
+            largest = arr[i];
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] != largest && arr[i] > secondLargest)
+        {
+            secondLargest = arr[i];
+        }
+    }
+
+    cout << "Second Largest: " << secondLargest;
+}
+// time complexity sorting takes = O(nlog n) ,2 loops = O(2n) ignore 2 TC = O(N)
+// it scans the array twice
+// better solution
+// maintain two variables .largest .secondlargest .update both in one travesal
+// time complexity is same O(N) but better is preferred
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int arr[] = {1, 2, 4, 7, 7, 5};
+    int n = 6;
+
+    int largest = arr[0];
+    int secondLargest = -1;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > largest)
+        {
+            secondLargest = largest;
+            largest = arr[i];
+        }
+        else if (arr[i] < largest && arr[i] > secondLargest)
+        {
+            secondLargest = arr[i];
+        }
+    }
+
+    cout << "Second Largest: " << secondLargest;
+
+    return 0;
+}
+
+// optimal solution
+
+int secondLargest(vector<int> &a, int n)
+{
+    int largest = a[0];
+    int slargest = -1;
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] > largest)
+        {
+            slargest = largest;
+            largest = a[i];
+        }
+        else if (a[i] < largest && a[i] > slargest)
+        {
+            slargest = a[i];
+        }
+    }
+    return slargest;
+}
+
+int secondSmallest(vector<int> &a, int n)
+{
+    int smallest = a[0];
+    int ssmallest = INT_MAX;
+    // if finding smallest values we should initialize the variable with a very large number
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] < smallest)
+        {
+            ssmallest = smallest;
+            smallest = a[i];
+        }
+        else if (a[i] != smallest && a[i] < ssmallest)
+        {
+            ssmallest = a[i];
+        }
+    }
+    return ssmallest;
+}
+vector<int> getSecondOrderElements(int n, vector<int> a)
+{
+    // vector<int> is return type means the function will return a vector(array-like structure) of integers.
+    // getSecondOrderElements is the function name
+    //  and in the brackets are the parameters(inputs) int n is size of array and vector<int> a is the actual array
+    int slargest = secondLargest(a, n);
+    // this calls another function secondLargest(n, a)
+    // finds the second largest element, returns it, stores it inside sLargest
+    int ssmallest = secondSmallest(a, n);
+    return {slargest, ssmallest};
+    // curly braces{}  this is called Initializer List in C++
+    // this creates and returns a vector
+    // equivalent to writing
+    // vector<int> result;
+    // result.push_back(sLargest);
+    // result.push_back(sSmallest);
+    // return result;
+    //  this whole code - create an empty vector, insert first element, insert second element, and return it.
+}
