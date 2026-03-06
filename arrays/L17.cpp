@@ -254,3 +254,24 @@ int isSorted(int n, vector<int> a)
     }
     return true;
 }
+
+// remove duplicates in-place from sorted array
+// leetcode solution
+class Solution
+{
+public:
+    int removeDuplicates(vector<int> &nums)
+    {
+        int i = 0; // first unique element
+        for (int j = 1; j < nums.size(); j++)
+        {
+            if (nums[j] != nums[i])
+            {                          // unique element found
+                nums[i + 1] = nums[j]; // replace, goes to front position
+                i++;
+            }
+        }
+        return i + 1;
+    }
+};
+// TC = O(N)
