@@ -104,3 +104,28 @@ public:
         reverse(nums.begin() + d, nums.end());
     }
 };
+
+//move all zeros to the end of an array
+vector<int> moveZeros(int n, vector<int> a) {
+// vector is a dynamic array in C++ which is storing integers(array of integers), also this means the function will return a vector of integers, moveZeros is function name, and inside the brackets are the parameters first is size of the array , next is array of integers , a is name of array
+
+vector<int> temp;
+// creating a new array of integers and its name is temp to store all non zero elements in it 
+    for(int i = 0; i<n; i++) {
+        if(a[i] != 0) {
+            temp.push_back(a[i]);
+        }
+    }
+
+    int nz = temp.size();
+    for(int i = 0;i<nz;i++) {
+        a[i] = temp[i];
+    }
+
+    for(int i = nz;i<n;i++) {
+        a[i] = 0;
+    }
+
+    return 0;
+
+}
