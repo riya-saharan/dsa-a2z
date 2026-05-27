@@ -145,6 +145,7 @@ int main()
 
     cout << "Second Largest: " << secondLargest;
 }
+// there can be a case when all elements are same and all are equal to largest and noones 2nd largest so we are taking secondlargest as -1
 // time complexity sorting takes = O(nlog n) ,2 loops = O(2n) ignore 2 TC = O(N)
 // it scans the array twice
 // better solution
@@ -262,7 +263,7 @@ class Solution
 public:
     int removeDuplicates(vector<int> &nums)
     {
-        int i = 0; // first unique element
+        int i = 0; // first unique element keep a pointer at first index 0th
         for (int j = 1; j < nums.size(); j++)
         {
             if (nums[j] != nums[i])
