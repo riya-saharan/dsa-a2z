@@ -270,6 +270,11 @@ int main()
     s.push(40);
     s.push(50);
     s.push(60); // This will cause stack overflow
+    while(!stk.isEmpty())
+    {
+        s.peek();
+        s.pop();
+    }
     s.peek();
     s.pop();
     s.peek();
@@ -279,3 +284,111 @@ int main()
     s.pop(); // This will cause stack underflow
     return 0;
 }
+
+stack using linked list
+#include <iostream>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node(int value)
+    {
+        data = value;
+        next = nullptr;
+    }
+};
+
+class Stack
+{
+    Node *top;
+
+public:
+    Stack()
+    {
+        top = nullptr;
+    }
+    void push(int element)
+    {
+        Node *newNode = new Node(element);
+        newNode->next = top;
+        top = newNode;
+    }
+    void pop()
+    {
+        if (top == nullptr)
+        {
+            cout << "Stack underflow" << endl;
+            return;
+        }
+        Node *temp = top;
+        top = top->next;
+        delete temp;
+    }
+    void peek()
+    {
+        if (top == nullptr)
+        {
+            cout << "Stack is empty" << endl;
+            return;
+        }
+        cout << "Top element: " << top->data << endl;
+    }
+    bool isEmpty()
+    {
+        return top == nullptr;
+    }
+};
+
+int main()
+{
+    Stack s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60); // This will cause stack overflow
+    while(!s.isEmpty())
+    {
+        s.peek();
+        s.pop();
+    }
+    s.peek();
+    s.pop();
+    s.peek();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop(); // This will cause stack underflow
+    return 0;
+}
+
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+string inToPost(string in) {
+    stack<char> st;
+    string post;
+    for(int i = 0; i<in.size(); i++) {
+        if(isOperator(in[i])){
+
+        }
+    }
+}
+
+int main(){
+    string in = "a+b*c/d"
+}
+
+prefix to postfix conversion
+To convert an infix expression to a postfix expression, we can use the Shunting Yard algorithm developed by Edsger Dijkstra. The algorithm uses a stack to hold operators and ensures that the output is in the correct order of operations. Here’s a step-by-step explanation of how the algorithm works:
+write code to convert infix to postfix expression
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;  

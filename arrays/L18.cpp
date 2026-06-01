@@ -44,7 +44,7 @@ int main()
     int n;
     cin >> n;
     int arr[n];
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) // input array elements
     {
         cin >> arr[i];
     }
@@ -56,8 +56,7 @@ int main()
     {
         cout << arr[i] << " ";
     }
-
-    return 0;
+    n return 0;
 }
 // optimal approach
 #include <bits/stdc++.h>
@@ -133,3 +132,97 @@ vector<int> moveZeros(int n, vector<int> a)
 
     return 0;
 }
+
+// union of two sorted arrays using set
+vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+{
+    set<int> s;
+    vector<int> ans;
+
+    for (int i = 0; i < n; i++)
+    {
+        s.insert(arr1[i]);
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        s.insert(arr2[i]);
+    }
+
+    for (auto it : s)
+    {
+        ans.push_back(it);
+    }
+
+    return ans;
+}
+
+// union of two sorted arrays
+vector<int> sortedArray(vector<int> a, vector<int> b)
+{
+    int n1 = a.size();
+    int n2 = b.size();
+    int i = 0;
+    int j = 0;
+    vector<int> unionArr;
+    while (i < n1 && i < n2)
+    {
+        if (a[i] < b[j])
+        {
+            ``if (unionArr.size() == 0 || unionArr.back() != a[i])
+            {
+                unionArr.push_back(a[i]);
+            }
+            i++;
+        }
+        else
+        {
+            ``if (unionArr.size() == 0 || unionArr.back() != b[j])
+            {
+                unionArr.push_back(b[j]);
+            }
+            j++;
+        }
+    }
+
+    while (j < n2)
+    {
+        if (unionArr.size() == 0 || unionArr.back() != b[j])
+        {
+            unionArr.push_back(b[j]);
+        }
+        j++;
+    }
+
+    while (i < n2)
+    {
+        if (unionArr.size() == 0 || unionArr.back() != a[i])
+        {
+            unionArr.push_back(a[i]);
+        }
+        i++;
+    }
+    return unionArr;
+}
+
+// intersection of two sorted arrays
+class Solution
+{
+public:
+    vector<int> intersection(vector<int> &nums1, vector<int> &nums2)
+    {
+        set<int> st;
+        for (int i = 0; i < nums1.size(); i++)
+        {
+            for (int j = 0; j < nums2.size(); j++)
+            {
+                if (nums1[i] == nums2[j])
+                {
+                    st.insert(nums1[i]);
+                }
+            }
+        }
+        vector<int> ans(st.begin(), st.end());
+        return ans;
+    }
+};
