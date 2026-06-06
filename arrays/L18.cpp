@@ -226,3 +226,30 @@ public:
         return ans;
     }
 };
+
+// Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+class Solution
+{
+public:
+    vector<int> intersect(vector<int> &nums1, vector<int> &nums2)
+    {
+
+        vector<int> ans;
+        vector<int> vis(nums2.size(), 0); // creates a visited array of the same size as nums2
+
+        for (int i = 0; i < nums1.size(); i++)
+        {
+            for (int j = 0; j < nums2.size(); j++)
+            {
+
+                if (nums1[i] == nums2[j] && vis[j] == 0)
+                { // elements in nums2 must not have been used before
+                    ans.push_back(nums1[i]);
+                    vis[j] = 1;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
